@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+    <style type="text/css">
+        .layui-table-page {
+            position:fixed;
+        }
+    </style>
+
+
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+    <script>
+        function deleteUser(sid) {
+            alert(sid)
+        }
+    </script>
+
+</head>
+
+<body>
+<div style="text-align: center">
+    <h1>任务列表</h1>
+    <br/>
+    <table align="center" border="1px" cellspacing="0" width="400px" style="text-align: center">
+        <tr>
+            <th>任务ID</th>
+            <th>任务名称</th>
+            <th>任务组别</th>
+            <th >cron表达式</th>
+            <th >类路径</th>
+            <th >任务描述</th>
+            <th >是否生效</th>
+            <th colspan="2">操作</th>
+        </tr>
+        <tr th:each="job : ${jobList}">
+            <td th:text="${job.id}"></td>
+            <td th:text="${job.jobName}"></td>
+            <td th:text="${job.jobGroup}"></td>
+            <td th:text="${job.jobCron}"></td>
+            <td th:text="${job.jobClassPath}"></td>
+            <td th:text="${job.jobDescribe}"></td>
+            <td th:text="${job.jobStatus}"></td>
+            <td>
+                <button type="button"  th:onclick="'javascript:reSchedulejob('+${job.id}+')' ">修改</button>
+            </td>
+            <td>
+                <button type="button"  th:onclick="'javascript:deletejob('+${job.id}+')' ">删除</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
